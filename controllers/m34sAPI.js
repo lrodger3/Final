@@ -1,35 +1,390 @@
-var request = require('request-promise');
-// Since all of the endpoints in the Spotify API use this url as a base, we store it in a variable 
-var baseURI = "https://api.spotify.com"; 
+var request = require('request-promise'),
+    async = require('async');
+// Since all of the endpoints in the Spotify API use this url as a base, we store it in a variable
+var baseURI = "https://api.spotify.com";
 
 module.exports = {
-  album : (req, res) =>{
+  FinalMix : (req, res) =>{
     // We need to make a request to the Spotify API
-    
-//     The request statement below needs to be modified for the Spotify API (still set up for KanyeREST)
-//     Artist 1 Requests from Spotify
-    request({
-      method : 'GET',
-      url    : '${baseURI}/v1/search/${req.body.artists.items[0].id}',
-      params : {
-                  q      : artist1,
-                  type   : "artist"
-               }
-//       url : `${baseURI}/api/album/${req.query.albumName}`
+
+  var bld_seeds=[]; //Initialize the empty array to capture the seeds
+
+  if(req.body.artist1){ //Artist 1 case test
+     bld_seeds.push(function(callback){
+  //     Artist 1 Requests from Spotify
+       request({
+            method : 'GET',
+            url    : `${baseURI}/v1/search/${req.body.artists.items[0].id}`,
+            qs     : {
+                        q      : req.body.artist1,
+                        type   : "artist"
+                     }
+        })
+        .then(function(response){ // Open the Manage Artist 1 response call
+
+          artist1_ID = response.data.artists.items[0].id;
+
+          // response is the response from the server.  The data you care about lives at the data property (response.data).
+          console.log('RESPONSE Artists!', response);
+
+          arts1 = response.data.artists.items[0]; // Attach it to the controller object so we can use it in HTML
+          console.log('Artist:', arts1, 'ArtistID:', artist1_ID);
+          callback(null,arts1); //Push the Artist 1 Object into the bld_seeds array
+         }) // Close the .then Manage Artist 1 response function call
+         .catch(function(err){
+           console.log(err);
+           console.log('A1');
+         })
+     }) // Close the bld_seeds array push function for Artist 1
+  } //Close the if case (when testing for Artist 1 info)
+
+  if(req.body.artist2){ //Artist 2 case test
+     bld_seeds.push(function(callback){
+//     Artist 2 Requests from Spotify
+       request({
+            method : 'GET',
+            url    : `${baseURI}/v1/search/${req.body.artists.items[0].id}`,
+            qs     : {
+                       q      : req.body.artist2,
+                       type   : "artist"
+                      }
+        })
+        .then(function(response){ // Open the Manage Artist 1 response call
+
+          artist2_ID = response.data.artists.items[0].id;
+
+          console.log('RESPONSE Artists!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
+
+          arts2 = response.data.artists.items[0]; // Attach it to the controller object so we can use it in HTML
+          console.log('Artist:', arts2.name, 'ArtistID:', artist2_ID);
+          callback(null,arts2); //Push the Artist 2 Object into the bld_seeds array
+         }) // Close the .then Manage Artist 2 response function call
+         .catch(function(err){
+           console.log(err);
+           console.log('A2');
+         })
+     }) // Close the bld_seeds array push function for Artist 2
+  } //Close the if case (when testing for Artist 2 info)
+  if(req.body.artist3){ //Artist 3 case test
+    bld_seeds.push(function(callback){
+//     Artist 3 Requests from Spotify
+      request({
+           method : 'GET',
+           url    : `${baseURI}/v1/search/${req.body.artists.items[0].id}`,
+           qs     : {
+                            q      : req.body.artist3,
+                            type   : "artist"
+                    }
+        })
+        .then(function(response){ // Open the Manage Artist 3 response call
+
+          artist3_ID = response.data.artists.items[0].id;
+
+          console.log('RESPONSE Artists!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
+
+          arts3 = response.data.artists.items[0]; // Attach it to the controller object so we can use it in HTML
+          console.log('Artist:', arts3.name, 'ArtistID:', artist3_ID);
+          callback(null,arts3); //Push the Artist 3 Object into the bld_seeds array
+         }) // Close the .then Manage Artist 3 response function call
+         .catch(function(err){
+           console.log(err);
+           console.log('A3');
+         })
+     }) // Close the bld_seeds array push function for Artist 3
+  } //Close the if case (when testing for Artist 3 info)
+
+  if(req.body.artist4){ //Artist 4 case test
+     bld_seeds.push(function(callback){
+//     Artist 4 Requests from Spotify
+       request({
+               method : 'GET',
+               url    : `${baseURI}/v1/search/${req.body.artists.items[0].id}`,
+               qs     : {
+                          q      : req.body.artist4,
+                          type   : "artist"
+                        }
+        })
+        .then(function(response){ // Open the Manage Artist 4 response call
+
+          artist4_ID = response.data.artists.items[0].id;
+
+          console.log('RESPONSE Artists!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
+
+          TheMix.arts4 = response.data.artists.items[0]; // Attach it to the controller object so we can use it in HTML
+          console.log('Artist:', arts4.name, 'ArtistID:', artist4_ID);
+          callback(null,arts4); //Push the Artist 4 Object into the bld_seeds array
+         }) // Close the .then Manage Artist 4 response function call
+         .catch(function(err){
+           console.log(err);
+           console.log('A4');
+         })
+     }) // Close the bld_seeds array push function for Artist 4
+  } //Close the if case (when testing for Artist 4 info)
+
+  if(req.body.artist5){ //Artist 5 case test
+     bld_seeds.push(function(callback){
+       //     Artist 5 Requests from Spotify
+       request({
+           method : 'GET',
+           url    : `${baseURI}/v1/search/${req.body.artists.items[0].id}`,
+           qs     : {
+                       q      : req.body.artist5,
+                       type   : "artist"
+                    }
+              })
+        .then(function(response){ // Open the Manage Artist 5 response call
+
+          artist5_ID = response.data.artists.items[0].id;
+
+          console.log('RESPONSE Artists!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
+
+          arts5 = response.data.artists.items[0]; // Attach it to the controller object so we can use it in HTML
+          console.log('Artist:', artist5.name, 'ArtistID:', artist5_ID);
+          callback(null,arts5); //Push the Artist 5 Object into the bld_seeds array
+         }) // Close the .then Manage Artist 5 response function call
+         .catch(function(err){
+           console.log(err);
+           console.log('A5');
+         })
+     }) // Close the bld_seeds array push function for Artist 5
+  } //Close the if case (when testing for Artist 5 info)
+
+  if(req.body.song1){ // Song 1 case test
+     bld_seeds.push(function(callback){
+      request({
+         method : 'GET',
+         url    : `${baseURI}/v1/search/${req.body.tracks.items[0].id}`,
+         qs     : {
+                     q      : req.body.song1,
+                     type   : "track"
+                  }
+         })
+         .then(function(response){ //Open the Manage Song 1 response call
+
+          song1_ID = response.data.tracks.items[0].id;
+
+          console.log('RESPONSE Songs!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
+
+          sng1 = response.data.tracks.items[0]; // Attach it to the controller object we can use it in HTML
+
+          console.log('Song1 Name:', sng1.name, 'Song1_ID:', song1_ID);
+          callback(null,sng1); //Push the Song 1 Object into the bld_seeds array
+         }) // Close the .then Manage Song 1 response function call
+         .catch(function(err){
+           console.log(err);
+           console.log('S1');
+         })
+     }) // Close the bld_seeds array push function for Song 1
+  }//Close the if case (when testing for Song 1 info)
+
+  if(req.body.song2){ // Song 2 case test
+    bld_seeds.push(function(callback){
+      request({
+        method : 'GET',
+        url    : `${baseURI}/v1/search/${req.body.tracks.items[0].id}`,
+        qs     : {
+                    q      : req.body.song2,
+                    type   : "track"
+                 }
+         })
+         .then(function(response){ //Open the Manage Song 2 response call
+
+          song2_ID = response.data.tracks.items[0].id;
+
+          console.log('RESPONSE Songs!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
+
+
+          sng2 = response.data.tracks.items[0]; // Attach it to the controller object we can use it in HTML
+
+          console.log('Song2 Name:', sng2.name, 'Song2_ID:', song2_ID);
+          callback(null,sng2); //Push the Song 2 Object into the bld_seeds array
+         }) // Close the .then Manage Song 2 response function call
+         .catch(function(err){
+           console.log(err);
+           console.log('S2');
+         })
+     }) // Close the bld_seeds array push function for Song 2
+  }//Close the if case (when testing for Song 2 info)
+
+  if(req.body.song3){ // Song 3 case test
+    bld_seeds.push(function(callback){
+      request({
+        method : 'GET',
+        url    : `${baseURI}/v1/search/${req.body.tracks.items[0].id}`,
+        qs     : {
+                    q      : req.body.song3,
+                    type   : "track"
+                 }
+         })
+         .then(function(response){ //Open the Manage Song 3 response call
+
+          song3_ID = response.data.tracks.items[0].id;
+
+          console.log('RESPONSE Songs!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
+
+          sng3 = response.data.tracks.items[0]; // Attach it to the controller object we can use it in HTML
+
+          console.log('Song3 Name:', sng3.name, 'Song3_ID:', song3_ID);
+          callback(null,sng3); //Push the Song 3 Object into the bld_seeds array
+         }) // Close the .then Manage Song 3 response function call
+         .catch(function(err){
+           console.log(err);
+           console.log('S3');
+         })
+     }) // Close the bld_seeds array push function for Song 3
+  }//Close the if case (when testing for Song 3 info)
+
+  if(req.body.song4){ // Song 4 case test
+    bld_seeds.push(function(callback){
+      request({
+        method : 'GET',
+        url    : `${baseURI}/v1/search/${req.body.tracks.items[0].id}`,
+        qs     : {
+                    q      : req.body.song4,
+                    type   : "track"
+                 }
+         })
+         .then(function(response){ //Open the Manage Song 4 response call
+
+          song4_ID = response.data.tracks.items[0].id;
+
+          console.log('RESPONSE Songs!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
+
+          sng4 = response.data.tracks.items[0]; // Attach it to the controller object we can use it in HTML
+
+          console.log('Song4 Name:', sng4.name, 'Song4_ID:', song4_ID);
+          callback(null,sng4); //Push the Song 4 Object into the bld_seeds array
+         }) // Close the .then Manage Song 4 response function call
+         .catch(function(err){
+           console.log(err);
+           console.log('S4');
+         })
+     }) // Close the bld_seeds array push function for Song 4
+  }//Close the if case (when testing for Song 4 info)
+
+  if(req.body.song5){ // Song 5 case test
+    bld_seeds.push(function(callback){
+      request({
+        method : 'GET',
+        url    : `${baseURI}/v1/search/${req.body.tracks.items[0].id}`,
+        qs     : {
+                    q      : req.body.song5,
+                    type   : "track"
+                 }
+         })
+         .then(function(response){ //Open the Manage Song 5 response call
+
+          song5_ID = response.data.tracks.items[0].id;
+          console.log('RESPONSE Songs!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
+
+          sng5 = response.data.tracks.items[0]; // Attach it to the controller object we can use it in HTML
+
+          console.log('Song5 Name:', sng5.name, 'Song5_ID:', song5_ID);
+          callback(null,sng5); //Push the Song 5 ID into the bld_seeds array
+         }) // Close the .then Manage Song 5 response function call
+         .catch(function(err){
+           console.log(err);
+           console.log('S5');
+         })
+     }) // Close the bld_seeds array push function for Song 5
+  }//Close the if case (when testing for Song 5 info)
+
+  if(req.body.genre1){ // Genre 1 case test
+    bld_seeds.push(function(callback){
+          Genre1f = req.body.genre1.toUpperCase();
+
+          console.log('Genre 1:', Genre1f);
+          callback(null,Genre1f); //Push the Genre 1 into the bld_seeds array
+    }) // Close the bld_seeds array push function for Genre 1
+  }//Close the if case (when testing for Genre 1 info)
+
+  if(req.body.genre2){ // Genre 2 case test
+    bld_seeds.push(function(callback){
+          Genre2f = req.body.genre2.toUpperCase();
+
+          console.log('Genre 2:', Genre2f);
+          callback(null,Genre2f); //Push the Genre 2 into the bld_seeds array
+    }) // Close the bld_seeds array push function for Genre 2
+  }//Close the if case (when testing for Genre 2 info)
+
+  if(req.body.genre3){ // Genre 3 case test
+    bld_seeds.push(function(callback){
+          Genre3f = req.body.genre3.toUpperCase();
+
+          console.log('Genre 3:', Genre3f);
+          callback(null,Genre3f); //Push the Genre 3 into the bld_seeds array
+    }) // Close the bld_seeds array push function for Genre 3
+  }//Close the if case (when testing for Genre 3 info)
+
+  if(req.body.genre4){ // Genre 4 case test
+    bld_seeds.push(function(callback){
+          Genre4f = req.body.genre4.toUpperCase();
+
+          console.log('Genre 4:', Genre4f);
+          callback(null,Genre4f); //Push the Genre 4 into the bld_seeds array
+    }) // Close the bld_seeds array push function for Genre 4
+  }//Close the if case (when testing for Genre 4 info)
+
+  if(req.body.genre5){ // Genre 5 case test
+    bld_seeds.push(function(callback){
+          Genre5f = req.body.genre5.toUpperCase();
+
+          console.log('Genre 5:', Genre5f);
+          callback(null,Genre5f); //Push the Genre 5 into the bld_seeds array
+    }) // Close the bld_seeds array push function for Genre 5
+  }//Close the if case (when testing for Genre 5 info)
+
+
+
+async.parallel(bld_seeds,function(err,SeedArray){
+    var artSeeds="";
+    var sngSeeds="";
+    var gnrSeeds="";
+
+    SeedArray.forEach(function(seedOb){
+       if (seedOb.type ==="artist"){
+           artSeeds += seedOb.id + ",";
+       }
+       else if (seedOb.type ==="track"){
+           sngSeeds += seedOb.id + ",";
+       }
+       else{
+           gnrSeeds += seedOb + ",";
+       }
     })
-    request({
-      method : 'GET',
-      url    : '${baseURI}/v1/search/${req.body.artists.items[0].id}',
-      params : {
-                  q      : artist2,
-                  type   : "artist"
-               }
-//       url : `${baseURI}/api/album/${req.query.albumName}`
-    })
-      .then((resp)=>{
-        console.log('FULL RESPONSE FROM SPOTIFY : ', resp);
-        res.send(resp);
-      });
-    
+    artSeeds = artSeeds.slice(0,-1);
+    console.log("Artist Seeds:",artSeeds);
+
+    sngSeeds = sngSeeds.slice(0,-1);
+    console.log("Song Seeds:",sngSeeds);
+
+    gnrSeeds = gnrSeeds.slice(0,-1);
+    console.log("Genre Seeds:",gnrSeeds);
+    request ({
+         method  : 'GET',
+         url     : `${baseURI}/v1/recommendations`,
+         headers : { Authorization : "Bearer BQD-7o4WYWQZLDuX_hZJ6ZrtMkzbMMGg9ScKcrsWsYrqcxsiHSl5bm5rIaHIOACs_wm34glaz5NKuMRrZN64JpnSU4hwMWBtXa_MB_iavAg0bg32U3zVqemmgG_ERshxJO74k7jpb4Q"
+                   },
+             qs  : {
+                     limit        : req.body.nSongs,
+                     seed_artists : artSeeds,
+                     seed_genres  : gnrSeeds,
+                     seed_tracks  : sngSeeds
+                   }
+      })
+      .then(function(resp){ //Open the Manage Recommendations response call
+
+      console.log('RESPONSE Recommendations!', resp.data);  // response is the response from the server.  The data you care about lives at the data property (response.data)
+
+      newMix = response.data.tracks; // Attach it to the controller object we can use it in HTML
+      resp.send(newMix);
+
+     }) // Close the .then Recommendations response function call
+     .catch(function(err){
+       console.log(err);
+       console.log('RECS');
+     })
+ });  //Closes the async.parallel function call
+
   },
 }

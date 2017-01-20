@@ -9,7 +9,7 @@ passport.serializeUser((user, next)=>{
 passport.deserializeUser((id, next)=>{
     // Find user in DB
     User.findOne({_id : id}, (err, user)=>{
-        next(null, user)    
+        next(null, user)
     })
 })
 
@@ -24,24 +24,24 @@ passport.use(
       console.log(profile);
       console.log(accessToken);
       console.log(refreshToken);
-      
+
       // find or create user in DB -- THIS MAY NEED TO BE MODIFIED
-      User.findOne({spotifyid : profile.id}, (err, user)=>{
-          if(!user){
-              var newuser = new User({
-                  name : profile.displayName,
-                  email : profile.emails[0].value,
-                  spotifyid : profile.id
-              })
-              newuser.save((err, doc)=>{
-                  next(null, doc)
-              })
-          }
-          else{
-              next(null, user);
-          }
-      })
-      
+      // User.findOne({spotifyid : profile.id}, (err, user)=>{
+      //     if(!user){
+      //         var newuser = new User({
+      //             name : profile.displayName,
+      //             email : profile.emails[0].value,
+      //             spotifyid : profile.id
+      //         })
+      //         newuser.save((err, doc)=>{
+      //             next(null, doc)
+      //         })
+      //     }
+      //     else{
+      //         next(null, user);
+      //     }
+      // })
+
     })
 
 )
