@@ -1,10 +1,10 @@
 
 <body ng-controller="TheMix as mygig">
-<div class="container-fluid">
+<!-- <div class="container-fluid">
     <h1>
        {{mygig.greeting}}
     </h1>
-</div>
+</div> -->
 
 <div class="container-fluid">
   <p> {{mygig.instructions1}}</p>
@@ -68,38 +68,7 @@
           <input ng-model="mygig.nSongs" class="form-control" type="text" placeholder = "# of Songs (<=100)">
     </div>
 
-    <h4>
-      Get it!
-    </h4>
-
-<!--     <div class=button>
-      <button>Make My Mix</button>
-    </div> -->
-
-
-    <button class="btn btn-primary btn-lg">Save Mix</button>
+    <button class="btn btn-primary btn-lg">Let's Mix</button>
   </form>
-<!--   type="button" class="btn btn-success" -->
-  <div>
-    <h1> {{mygig.mixTitle}}</h1>
-  </div>
-
-  <div>
-    <ul class="list-group">
-        <li class="list-group-item" ng-repeat="MixList in mygig.mix | orderBy:'artists[0].name'" ng-click="mygig.getArtists(artists)">
-            <p>
-              {{MixList.artists[0].name}}
-            </p>
-            <p>
-               {{MixList.name}}
-            </p>
-            <p>
-               <iframe ng-src="{{ mygig.$sce.trustAsResourceUrl('https://embed.spotify.com/?uri=' + MixList.uri) }}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
-            </p>
-        </li>
-     </ul>
-  </div>
 
 </body>
-
-</html>

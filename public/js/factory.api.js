@@ -1,7 +1,7 @@
 angular.module('M34S')
        .factory('MixCenter', mixFactory);
 
-mixFactory.$inject = ['$http']
+mixFactory.$inject = ['$http'];
 
 function mixFactory ($http){ //Open factory function
    function FinalMix (artist1,

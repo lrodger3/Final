@@ -1,11 +1,33 @@
 angular.module("M34S")
-  .controller('TheMix', mixCtrller);
+       .controller('TheMix', mixCtrller);
 
-mixCtrller.$inject = ['MixCenter','$sce'];
+mixCtrller.$inject = ['Auth','MixCenter','$location','$sce'];
 
-function mixCtrller (MixCenter,$sce){// Open the main controller function
+function mixCtrller (Auth,MixCenter,$location,$sce){// Open the main controller function
   var TheMix = this;
   TheMix.$sce = $sce;
+  TheMix.Auth = Auth;
+
+  Auth.checkAuth()
+      .then(function(returnData){
+      console.log(returnData);
+
+      if(!returnData.data){
+        // kick them out
+        $location.url('/'); // take them to angular home route
+      }
+      else{
+
+        // User is logged in, set them in the service and fetch plylist data
+
+        Auth.user = returnData.data // store in Auth service so we can access it anywhere we inject Auth
+        // playlist.get()
+        //   .then(function(returnData){
+        //     // mix.****** = returnData.data
+        // })
+      }
+
+    })
 
   TheMix.greeting = "Make My Mix for Spotify";
   TheMix.instructions1="Use a total of five options to make your mix playlist:";

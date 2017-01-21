@@ -1,0 +1,31 @@
+<body ng-controller="mixCtrl as mymix">
+<!-- <div class="container-fluid">
+    <h1>
+       {{mymix.greeting}}
+    </h1>
+</div> -->
+
+<div class="container-fluid">
+  <p> {{mymix.instructions1}}</p>
+  <p> {{mymix.instructions2}}</p>
+  <p> {{mymix.instructions3}}</p>
+  <p> {{mymix.instructions4}}</p>
+</div>
+
+  <div>
+    <ul class="list-group">
+        <li class="list-group-item" ng-repeat="MixList in mymix.mix | orderBy:'artists[0].name'" ng-click="mymix.getArtists(artists)">
+            <p>
+              {{MixList.artists[0].name}}
+            </p>
+            <p>
+               {{MixList.name}}
+            </p>
+            <p>
+               <iframe ng-src="{{ mymix.$sce.trustAsResourceUrl('https://embed.spotify.com/?uri=' + MixList.uri) }}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+            </p>
+        </li>
+     </ul>
+  </div>
+
+</body>

@@ -14,20 +14,20 @@ module.exports = {
   //     Artist 1 Requests from Spotify
        request({
             method : 'GET',
-            url    : `${baseURI}/v1/search/${req.body.artists.items[0].id}`,
+            url    : `${baseURI}/v1/search/`,
             qs     : {
                         q      : req.body.artist1,
                         type   : "artist"
                      }
         })
-        .then(function(response){ // Open the Manage Artist 1 response call
-
-          artist1_ID = response.data.artists.items[0].id;
-
+        .then(function(resp){ // Open the Manage Artist 1 response call
+          response=JSON.parse(resp);
           // response is the response from the server.  The data you care about lives at the data property (response.data).
           console.log('RESPONSE Artists!', response);
 
-          arts1 = response.data.artists.items[0]; // Attach it to the controller object so we can use it in HTML
+          artist1_ID = response.artists.items[0].id;
+
+          arts1 = response.artists.items[0]; // Attach it to the controller object so we can use it in HTML
           console.log('Artist:', arts1, 'ArtistID:', artist1_ID);
           callback(null,arts1); //Push the Artist 1 Object into the bld_seeds array
          }) // Close the .then Manage Artist 1 response function call
@@ -43,19 +43,20 @@ module.exports = {
 //     Artist 2 Requests from Spotify
        request({
             method : 'GET',
-            url    : `${baseURI}/v1/search/${req.body.artists.items[0].id}`,
+            url    : `${baseURI}/v1/search/`,
             qs     : {
                        q      : req.body.artist2,
                        type   : "artist"
                       }
         })
-        .then(function(response){ // Open the Manage Artist 1 response call
+        .then(function(resp){ // Open the Manage Artist 1 response call
+          response=JSON.parse(resp);
+          // response is the response from the server.  The data you care about lives at the data property (response.data).
+          console.log('RESPONSE Artists!', response);
 
-          artist2_ID = response.data.artists.items[0].id;
+          artist2_ID = response.artists.items[0].id;
 
-          console.log('RESPONSE Artists!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
-
-          arts2 = response.data.artists.items[0]; // Attach it to the controller object so we can use it in HTML
+          arts2 = response.artists.items[0]; // Attach it to the controller object so we can use it in HTML
           console.log('Artist:', arts2.name, 'ArtistID:', artist2_ID);
           callback(null,arts2); //Push the Artist 2 Object into the bld_seeds array
          }) // Close the .then Manage Artist 2 response function call
@@ -70,19 +71,20 @@ module.exports = {
 //     Artist 3 Requests from Spotify
       request({
            method : 'GET',
-           url    : `${baseURI}/v1/search/${req.body.artists.items[0].id}`,
+           url    : `${baseURI}/v1/search/`,
            qs     : {
                             q      : req.body.artist3,
                             type   : "artist"
                     }
         })
-        .then(function(response){ // Open the Manage Artist 3 response call
+        .then(function(resp){ // Open the Manage Artist 3 response call
+          response=JSON.parse(resp);
+          // response is the response from the server.  The data you care about lives at the data property (response.data).
+          console.log('RESPONSE Artists!', response);
 
-          artist3_ID = response.data.artists.items[0].id;
+          artist3_ID = response.artists.items[0].id;
 
-          console.log('RESPONSE Artists!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
-
-          arts3 = response.data.artists.items[0]; // Attach it to the controller object so we can use it in HTML
+          arts3 = response.artists.items[0]; // Attach it to the controller object so we can use it in HTML
           console.log('Artist:', arts3.name, 'ArtistID:', artist3_ID);
           callback(null,arts3); //Push the Artist 3 Object into the bld_seeds array
          }) // Close the .then Manage Artist 3 response function call
@@ -98,19 +100,20 @@ module.exports = {
 //     Artist 4 Requests from Spotify
        request({
                method : 'GET',
-               url    : `${baseURI}/v1/search/${req.body.artists.items[0].id}`,
+               url    : `${baseURI}/v1/search/`,
                qs     : {
                           q      : req.body.artist4,
                           type   : "artist"
                         }
         })
-        .then(function(response){ // Open the Manage Artist 4 response call
+        .then(function(resp){ // Open the Manage Artist 4 response call
+          response=JSON.parse(resp);
+          // response is the response from the server.  The data you care about lives at the data property (response.data).
+          console.log('RESPONSE Artists!', response);
 
-          artist4_ID = response.data.artists.items[0].id;
+          artist4_ID = response.artists.items[0].id;
 
-          console.log('RESPONSE Artists!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
-
-          TheMix.arts4 = response.data.artists.items[0]; // Attach it to the controller object so we can use it in HTML
+          TheMix.arts4 = response.artists.items[0]; // Attach it to the controller object so we can use it in HTML
           console.log('Artist:', arts4.name, 'ArtistID:', artist4_ID);
           callback(null,arts4); //Push the Artist 4 Object into the bld_seeds array
          }) // Close the .then Manage Artist 4 response function call
@@ -126,19 +129,20 @@ module.exports = {
        //     Artist 5 Requests from Spotify
        request({
            method : 'GET',
-           url    : `${baseURI}/v1/search/${req.body.artists.items[0].id}`,
+           url    : `${baseURI}/v1/search/`,
            qs     : {
                        q      : req.body.artist5,
                        type   : "artist"
                     }
               })
-        .then(function(response){ // Open the Manage Artist 5 response call
+        .then(function(resp){ // Open the Manage Artist 5 response call
+          response=JSON.parse(resp);
+          // response is the response from the server.  The data you care about lives at the data property (response.data).
+          console.log('RESPONSE Artists!', response);
 
-          artist5_ID = response.data.artists.items[0].id;
+          artist5_ID = response.artists.items[0].id;
 
-          console.log('RESPONSE Artists!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
-
-          arts5 = response.data.artists.items[0]; // Attach it to the controller object so we can use it in HTML
+          arts5 = response.artists.items[0]; // Attach it to the controller object so we can use it in HTML
           console.log('Artist:', artist5.name, 'ArtistID:', artist5_ID);
           callback(null,arts5); //Push the Artist 5 Object into the bld_seeds array
          }) // Close the .then Manage Artist 5 response function call
@@ -153,19 +157,19 @@ module.exports = {
      bld_seeds.push(function(callback){
       request({
          method : 'GET',
-         url    : `${baseURI}/v1/search/${req.body.tracks.items[0].id}`,
+         url    : `${baseURI}/v1/search/`,
          qs     : {
                      q      : req.body.song1,
                      type   : "track"
                   }
          })
-         .then(function(response){ //Open the Manage Song 1 response call
-
-          song1_ID = response.data.tracks.items[0].id;
+         .then(function(resp){ //Open the Manage Song 1 response call
+          response=JSON.parse(resp);
+          song1_ID = response.tracks.items[0].id;
 
           console.log('RESPONSE Songs!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
 
-          sng1 = response.data.tracks.items[0]; // Attach it to the controller object we can use it in HTML
+          sng1 = response.tracks.items[0]; // Attach it to the controller object we can use it in HTML
 
           console.log('Song1 Name:', sng1.name, 'Song1_ID:', song1_ID);
           callback(null,sng1); //Push the Song 1 Object into the bld_seeds array
@@ -181,20 +185,20 @@ module.exports = {
     bld_seeds.push(function(callback){
       request({
         method : 'GET',
-        url    : `${baseURI}/v1/search/${req.body.tracks.items[0].id}`,
+        url    : `${baseURI}/v1/search/`,
         qs     : {
                     q      : req.body.song2,
                     type   : "track"
                  }
          })
-         .then(function(response){ //Open the Manage Song 2 response call
-
-          song2_ID = response.data.tracks.items[0].id;
+         .then(function(resp){ //Open the Manage Song 2 response call
+          response=JSON.parse(resp);
+          song2_ID = response.tracks.items[0].id;
 
           console.log('RESPONSE Songs!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
 
 
-          sng2 = response.data.tracks.items[0]; // Attach it to the controller object we can use it in HTML
+          sng2 = response.tracks.items[0]; // Attach it to the controller object we can use it in HTML
 
           console.log('Song2 Name:', sng2.name, 'Song2_ID:', song2_ID);
           callback(null,sng2); //Push the Song 2 Object into the bld_seeds array
@@ -210,19 +214,19 @@ module.exports = {
     bld_seeds.push(function(callback){
       request({
         method : 'GET',
-        url    : `${baseURI}/v1/search/${req.body.tracks.items[0].id}`,
+        url    : `${baseURI}/v1/search/`,
         qs     : {
                     q      : req.body.song3,
                     type   : "track"
                  }
          })
-         .then(function(response){ //Open the Manage Song 3 response call
-
-          song3_ID = response.data.tracks.items[0].id;
+         .then(function(resp){ //Open the Manage Song 3 response call
+          response=JSON.parse(resp);
+          song3_ID = response.tracks.items[0].id;
 
           console.log('RESPONSE Songs!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
 
-          sng3 = response.data.tracks.items[0]; // Attach it to the controller object we can use it in HTML
+          sng3 = response.tracks.items[0]; // Attach it to the controller object we can use it in HTML
 
           console.log('Song3 Name:', sng3.name, 'Song3_ID:', song3_ID);
           callback(null,sng3); //Push the Song 3 Object into the bld_seeds array
@@ -238,19 +242,19 @@ module.exports = {
     bld_seeds.push(function(callback){
       request({
         method : 'GET',
-        url    : `${baseURI}/v1/search/${req.body.tracks.items[0].id}`,
+        url    : `${baseURI}/v1/search/`,
         qs     : {
                     q      : req.body.song4,
                     type   : "track"
                  }
          })
-         .then(function(response){ //Open the Manage Song 4 response call
-
-          song4_ID = response.data.tracks.items[0].id;
+         .then(function(resp){ //Open the Manage Song 4 response call
+          response=JSON.parse(resp);
+          song4_ID = response.tracks.items[0].id;
 
           console.log('RESPONSE Songs!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
 
-          sng4 = response.data.tracks.items[0]; // Attach it to the controller object we can use it in HTML
+          sng4 = response.tracks.items[0]; // Attach it to the controller object we can use it in HTML
 
           console.log('Song4 Name:', sng4.name, 'Song4_ID:', song4_ID);
           callback(null,sng4); //Push the Song 4 Object into the bld_seeds array
@@ -266,18 +270,18 @@ module.exports = {
     bld_seeds.push(function(callback){
       request({
         method : 'GET',
-        url    : `${baseURI}/v1/search/${req.body.tracks.items[0].id}`,
+        url    : `${baseURI}/v1/search/`,
         qs     : {
                     q      : req.body.song5,
                     type   : "track"
                  }
          })
-         .then(function(response){ //Open the Manage Song 5 response call
-
-          song5_ID = response.data.tracks.items[0].id;
+         .then(function(resp){ //Open the Manage Song 5 response call
+          response=JSON.parse(resp);
+          song5_ID = response.tracks.items[0].id;
           console.log('RESPONSE Songs!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
 
-          sng5 = response.data.tracks.items[0]; // Attach it to the controller object we can use it in HTML
+          sng5 = response.tracks.items[0]; // Attach it to the controller object we can use it in HTML
 
           console.log('Song5 Name:', sng5.name, 'Song5_ID:', song5_ID);
           callback(null,sng5); //Push the Song 5 ID into the bld_seeds array
@@ -363,7 +367,7 @@ async.parallel(bld_seeds,function(err,SeedArray){
     request ({
          method  : 'GET',
          url     : `${baseURI}/v1/recommendations`,
-         headers : { Authorization : "Bearer BQD-7o4WYWQZLDuX_hZJ6ZrtMkzbMMGg9ScKcrsWsYrqcxsiHSl5bm5rIaHIOACs_wm34glaz5NKuMRrZN64JpnSU4hwMWBtXa_MB_iavAg0bg32U3zVqemmgG_ERshxJO74k7jpb4Q"
+         headers : { Authorization : "Bearer req.user.token"
                    },
              qs  : {
                      limit        : req.body.nSongs,
@@ -374,9 +378,9 @@ async.parallel(bld_seeds,function(err,SeedArray){
       })
       .then(function(resp){ //Open the Manage Recommendations response call
 
-      console.log('RESPONSE Recommendations!', resp.data);  // response is the response from the server.  The data you care about lives at the data property (response.data)
+      console.log('RESPONSE Recommendations!', resp);  // response is the response from the server.  The data you care about lives at the data property (response.data)
 
-      newMix = response.data.tracks; // Attach it to the controller object we can use it in HTML
+      newMix = resp.tracks; // Attach it to the controller object we can use it in HTML
       resp.send(newMix);
 
      }) // Close the .then Recommendations response function call

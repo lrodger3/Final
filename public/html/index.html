@@ -4,13 +4,22 @@
 <head>
   <meta charset="UTF-8">
 <!--   <title>Make My Mix for Spotify</title> -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular-route.js"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/async/2.1.4/async.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
-<!--   <link rel="stylesheet" href="mmm.css"> -->
+
+  <link rel="stylesheet" href="/css/m34s.css">
   <script src="/js/module.m34s.js"></script>
-  <script src="/js/controller.home.js"></script>
+  <script src="/js/controller.mkmix.js"></script>
+  <script src="/js/controller.mkdash.js"></script>
   <script src="/js/factory.api.js"></script>
+  <script src="/js/service.auth.js"></script>
 </head>
 
 <body ng-controller="TheMix as mygig">
@@ -36,13 +45,14 @@
             <a ng-href="#/">Home</a>
           </li>
           <li>
-            <a ng-href="#/login">Login</a>
+          <li ng-if="mygig.Auth.user">
+            <a ng-href="#/makemix">Make Mix</a>
           </li>
-          <li ng-if="home.Auth.user">
-            <a ng-href="#/mixer">Mixer</a>
+          <li ng-if="mygig.Auth.user">
+            <a ng-href="#/mixer">Edit Mixes</a>
           </li>
-           <li ng-if="home.Auth.user">
-            <a ng-href="/logout">Logout</a>
+           <li ng-if="mygig.Auth.user">
+            <a ng-href="#/done">Done</a>
           </li>
         </ul>
 
@@ -52,16 +62,10 @@
     <!-- /.container-fluid -->
   </nav>
 
-  <a href="/auth/spotify">
-
-              <h1> Login with Spotify </h1>
-
-  </a>
-
   <ng-view></ng-view>
 
   <footer>
-    ©M34S 2017
+    ©M34S Make My Mix for Spotify                     2017 All Rights Reserved.
   </footer>
 </body>
 

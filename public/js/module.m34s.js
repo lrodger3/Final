@@ -1,6 +1,5 @@
-angular.module("M34S", ['ngRoute']);
-
-.config(ngRouter)
+angular.module("M34S", ['ngRoute'])
+       .config(ngRouter);
 
 ngRouter.$inject = ['$routeProvider', '$locationProvider'];
 
@@ -10,19 +9,23 @@ $routeProvider.otherwise('/');
 
 $routeProvider
   .when('/', {
-    templateUrl : '/html/index.html',
+    templateUrl : '/html/home.html',
     controller : 'TheMix',
     controllerAs : 'mixCtrller'
   })
-  .when('/login', {
+  .when('/makemix', {
     templateUrl : '/html/makemix.html',
     controller : 'TheMix',
     controllerAs : 'mixCtrller'
   })
-  .when('/dash', {
-    templateUrl : '/html/mixdash.html',
+  .when('/mixer', {
+    templateUrl : '/html/mixer.html',
     controller : 'mixCtrl',
     controllerAs : 'mix'
   })
-
+  .when('/done', {
+    templateUrl : '/html/done.html',
+    controller : 'mixCtrl',
+    controllerAs : 'mix'
+  })
 }

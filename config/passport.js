@@ -19,28 +19,32 @@ passport.use(
     new SpotifyStrategy({
         clientID : "dfe4fc58ae814cb0a818ee3c4e95c6e6",
         clientSecret : "5a024a089c34483e8be54189f53d4c86",
-        callbackURL : "http://localhost:8888/auth/spotify/callback"
+        callbackURL : "/auth/spotify/callback"
     }, (accessToken, refreshToken, profile, next)=>{
       console.log(profile);
       console.log(accessToken);
       console.log(refreshToken);
 
-      // find or create user in DB -- THIS MAY NEED TO BE MODIFIED
-      // User.findOne({spotifyid : profile.id}, (err, user)=>{
-      //     if(!user){
-      //         var newuser = new User({
-      //             name : profile.displayName,
-      //             email : profile.emails[0].value,
-      //             spotifyid : profile.id
-      //         })
-      //         newuser.save((err, doc)=>{
-      //             next(null, doc)
-      //         })
-      //     }
-      //     else{
-      //         next(null, user);
-      //     }
-      // })
+      // Find or Create user in DB
+      User.findOne({spotifyid : profile.id}, (err, user)=>{
+          if(!user){
+              var newuser = new User({
+                name        : profile.username,
+                email       : profile.emails[0].value,
+                spotifyid   : profile.id,
+                token       : accessToken,
+                playlists   : []
+              })
+              newuser.save((err, doc)=>{
+                  next(null, doc)
+              })
+          }
+          else{
+              user.token = accessToken;
+              user.save();
+              next(null, user);
+          }
+      })
 
     })
 
