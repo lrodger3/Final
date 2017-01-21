@@ -21,7 +21,7 @@ function mixCtrller (Auth,MixCenter,$location,$sce){// Open the main controller 
         // User is logged in, set them in the service and fetch plylist data
 
         Auth.user = returnData.data // store in Auth service so we can access it anywhere we inject Auth
-        // playlist.get()
+        // Auth.user.playlist.get()
         //   .then(function(returnData){
         //     // mix.****** = returnData.data
         // })
@@ -55,7 +55,7 @@ function mixCtrller (Auth,MixCenter,$location,$sce){// Open the main controller 
         )
     .then(function(resp){
       console.log('Mixes : ', resp.data)
-      TheMix.mixes = resp.data.result;
+      TheMix.playlists = resp.data;
     });
 }
 }  //Closes the main controller call

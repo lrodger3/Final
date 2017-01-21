@@ -4,8 +4,10 @@ angular.module('M34S')
 mixCtrl.$inject = ["Auth","$location"];
 
 function mixCtrl (Auth, $location) {
+  
   var mix = this;
   mix.Auth = Auth;
+
   Auth.checkAuth()
       .then(function(returnData){
       console.log(returnData);

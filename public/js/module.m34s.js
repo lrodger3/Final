@@ -28,4 +28,9 @@ $routeProvider
     controller : 'mixCtrl',
     controllerAs : 'mix'
   })
+  // .when('/thm', {
+  //   templateUrl : '/html/indexTHM.html',
+  //   controller : 'TheMix',
+  //   controllerAs : 'mixCtrller'
+  // })
 }

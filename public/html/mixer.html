@@ -14,7 +14,7 @@
 
   <div>
     <ul class="list-group">
-        <li class="list-group-item" ng-repeat="MixList in mymix.mix | orderBy:'artists[0].name'" ng-click="mymix.getArtists(artists)">
+        <li class="list-group-item" ng-repeat="MixList in mymix.mix | orderBy:'MixList.artists[0].name'" ng-click="mymix.FinalMix(artists)">
             <p>
               {{MixList.artists[0].name}}
             </p>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="M34S" lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<!--   <title>Make My Mix for Spotify</title> -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.9/angular-route.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/async/2.1.4/async.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+  <link rel="stylesheet" href="/css/m34s.css">
+  
+  <script src="/js/module.m34s.js"></script>
+  <script src="/js/controller.mkmix.js"></script>
+  <script src="/js/controller.mkdash.js"></script>
+  <script src="/js/factory.api.js"></script>
+  <script src="/js/service.auth.js"></script>
+</head>
+
+<body ng-controller="TheMix as mygig">
+
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+        <a class="navbar-brand" href="#">Make My Mix for Spotify</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li>
+            <a ng-href="#/">Home</a>
+          </li>
+          <li>
+          <li ng-if="mygig.Auth.user">
+            <a ng-href="#/makemix">Make Mix</a>
+          </li>
+          <li ng-if="mygig.Auth.user">
+            <a ng-href="#/mixer">Edit Mixes</a>
+          </li>
+           <li ng-if="mygig.Auth.user">
+            <a ng-href="#/done">Done</a>
+          </li>
+        </ul>
+
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+
+  <ng-view></ng-view>
+
+  <footer>
+    ©M34S Make My Mix for Spotify                     2017 All Rights Reserved.
+  </footer>
+</body>
+
+</html>

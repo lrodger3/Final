@@ -367,7 +367,7 @@ async.parallel(bld_seeds,function(err,SeedArray){
     request ({
          method  : 'GET',
          url     : `${baseURI}/v1/recommendations`,
-         headers : { Authorization : "Bearer req.user.token"
+         headers : { Authorization : `"Bearer ${req.user.token}"`
                    },
              qs  : {
                      limit        : req.body.nSongs,
@@ -378,10 +378,10 @@ async.parallel(bld_seeds,function(err,SeedArray){
       })
       .then(function(resp){ //Open the Manage Recommendations response call
 
-      console.log('RESPONSE Recommendations!', resp);  // response is the response from the server.  The data you care about lives at the data property (response.data)
+      console.log('RESPONSE Recommendations!', resp);  // response is the response from the server.
 
-      newMix = resp.tracks; // Attach it to the controller object we can use it in HTML
-      resp.send(newMix);
+      req.user.playlists = resp.tracks; // Attach it to the user for storage in the local database
+      // resp.send(newMix);
 
      }) // Close the .then Recommendations response function call
      .catch(function(err){
@@ -389,6 +389,6 @@ async.parallel(bld_seeds,function(err,SeedArray){
        console.log('RECS');
      })
  });  //Closes the async.parallel function call
-
+  //  res.send(newMix);
   },
 }
