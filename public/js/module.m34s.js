@@ -20,17 +20,7 @@ $routeProvider
   })
   .when('/mixer', {
     templateUrl : '/html/mixer.html',
-    controller : 'mixCtrl',
-    controllerAs : 'mix'
+    controller : 'TheMix',
+    controllerAs : 'mymix'
   })
-  .when('/done', {
-    templateUrl : '/html/done.html',
-    controller : 'mixCtrl',
-    controllerAs : 'mix'
-  })
-  // .when('/thm', {
-  //   templateUrl : '/html/indexTHM.html',
-  //   controller : 'TheMix',
-  //   controllerAs : 'mixCtrller'
-  // })
 }

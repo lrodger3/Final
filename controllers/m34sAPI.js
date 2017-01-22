@@ -4,7 +4,7 @@ var request = require('request-promise'),
 var baseURI = "https://api.spotify.com";
 
 module.exports = {
-  FinalMix : (req, res) =>{
+  FinalMix : (req, xyz) =>{
     // We need to make a request to the Spotify API
 
   var bld_seeds=[]; //Initialize the empty array to capture the seeds
@@ -18,10 +18,11 @@ module.exports = {
             qs     : {
                         q      : req.body.artist1,
                         type   : "artist"
-                     }
+                     },
+            json   : true
         })
-        .then(function(resp){ // Open the Manage Artist 1 response call
-          response=JSON.parse(resp);
+        .then(function(response){ // Open the Manage Artist 1 response call
+          // response=JSON.parse(resp);
           // response is the response from the server.  The data you care about lives at the data property (response.data).
           console.log('RESPONSE Artists!', response);
 
@@ -47,10 +48,11 @@ module.exports = {
             qs     : {
                        q      : req.body.artist2,
                        type   : "artist"
-                      }
+                     },
+            json   : true
         })
-        .then(function(resp){ // Open the Manage Artist 1 response call
-          response=JSON.parse(resp);
+        .then(function(response){ // Open the Manage Artist 1 response call
+          // response=JSON.parse(resp);
           // response is the response from the server.  The data you care about lives at the data property (response.data).
           console.log('RESPONSE Artists!', response);
 
@@ -75,10 +77,11 @@ module.exports = {
            qs     : {
                             q      : req.body.artist3,
                             type   : "artist"
-                    }
+                    },
+           json   : true
         })
-        .then(function(resp){ // Open the Manage Artist 3 response call
-          response=JSON.parse(resp);
+        .then(function(response){ // Open the Manage Artist 3 response call
+          // response=JSON.parse(resp);
           // response is the response from the server.  The data you care about lives at the data property (response.data).
           console.log('RESPONSE Artists!', response);
 
@@ -104,10 +107,11 @@ module.exports = {
                qs     : {
                           q      : req.body.artist4,
                           type   : "artist"
-                        }
+                        },
+               json   : true
         })
-        .then(function(resp){ // Open the Manage Artist 4 response call
-          response=JSON.parse(resp);
+        .then(function(response){ // Open the Manage Artist 4 response call
+          // response=JSON.parse(resp);
           // response is the response from the server.  The data you care about lives at the data property (response.data).
           console.log('RESPONSE Artists!', response);
 
@@ -133,10 +137,11 @@ module.exports = {
            qs     : {
                        q      : req.body.artist5,
                        type   : "artist"
-                    }
-              })
-        .then(function(resp){ // Open the Manage Artist 5 response call
-          response=JSON.parse(resp);
+                    },
+           json   : true
+        })
+        .then(function(response){ // Open the Manage Artist 5 response call
+          // response=JSON.parse(resp);
           // response is the response from the server.  The data you care about lives at the data property (response.data).
           console.log('RESPONSE Artists!', response);
 
@@ -161,10 +166,11 @@ module.exports = {
          qs     : {
                      q      : req.body.song1,
                      type   : "track"
-                  }
+                  },
+         json   : true
          })
-         .then(function(resp){ //Open the Manage Song 1 response call
-          response=JSON.parse(resp);
+         .then(function(response){ //Open the Manage Song 1 response call
+          // response=JSON.parse(resp);
           song1_ID = response.tracks.items[0].id;
 
           console.log('RESPONSE Songs!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
@@ -189,10 +195,11 @@ module.exports = {
         qs     : {
                     q      : req.body.song2,
                     type   : "track"
-                 }
+                 },
+        json   : true
          })
-         .then(function(resp){ //Open the Manage Song 2 response call
-          response=JSON.parse(resp);
+         .then(function(response){ //Open the Manage Song 2 response call
+          // response=JSON.parse(resp);
           song2_ID = response.tracks.items[0].id;
 
           console.log('RESPONSE Songs!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
@@ -218,10 +225,11 @@ module.exports = {
         qs     : {
                     q      : req.body.song3,
                     type   : "track"
-                 }
+                 },
+        json   : true
          })
-         .then(function(resp){ //Open the Manage Song 3 response call
-          response=JSON.parse(resp);
+         .then(function(response){ //Open the Manage Song 3 response call
+          // response=JSON.parse(resp);
           song3_ID = response.tracks.items[0].id;
 
           console.log('RESPONSE Songs!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
@@ -246,10 +254,11 @@ module.exports = {
         qs     : {
                     q      : req.body.song4,
                     type   : "track"
-                 }
+                 },
+        json   : true
          })
-         .then(function(resp){ //Open the Manage Song 4 response call
-          response=JSON.parse(resp);
+         .then(function(response){ //Open the Manage Song 4 response call
+          // response=JSON.parse(resp);
           song4_ID = response.tracks.items[0].id;
 
           console.log('RESPONSE Songs!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
@@ -274,10 +283,11 @@ module.exports = {
         qs     : {
                     q      : req.body.song5,
                     type   : "track"
-                 }
+                 },
+        json   : true
          })
-         .then(function(resp){ //Open the Manage Song 5 response call
-          response=JSON.parse(resp);
+         .then(function(response){ //Open the Manage Song 5 response call
+          // response=JSON.parse(resp);
           song5_ID = response.tracks.items[0].id;
           console.log('RESPONSE Songs!', response);  // response is the response from the server.  The data you care about lives at the data property (response.data)
 
@@ -374,21 +384,50 @@ async.parallel(bld_seeds,function(err,SeedArray){
                      seed_artists : artSeeds,
                      seed_genres  : gnrSeeds,
                      seed_tracks  : sngSeeds
-                   }
+                   },
+             json : true
       })
-      .then(function(resp){ //Open the Manage Recommendations response call
+      .then(function(response){ //Open the Manage Recommendations response call
+      // response=JSON.parse(resp);
+      console.log('RESPONSE Recommendations!', response);  // response is the response from the server.
 
-      console.log('RESPONSE Recommendations!', resp);  // response is the response from the server.
 
-      req.user.playlists = resp.tracks; // Attach it to the user for storage in the local database
-      // resp.send(newMix);
+      req.user.mixDetails= response;
+      req.user.playlists = response.tracks; // Attach it to the user for storage in the local database
+      req.user.save();
+      xyz.send(req.user.mixDetails);
 
      }) // Close the .then Recommendations response function call
      .catch(function(err){
        console.log(err);
        console.log('RECS');
      })
- });  //Closes the async.parallel function call
-  //  res.send(newMix);
-  },
+  });  //Closes the async.parallel function call
+ },
+
+
+  SavePL : (req, res) =>{
+  // We need to make a request to the Spotify API
+  //     Playlist Requests from Spotify
+       request({
+            method : 'POST',
+            url    : `${baseURI}/v1/users/${req.user.spotifyid}/playlists`,
+            some   : {
+                        name      : req.body.namePlaylist
+                     },
+            json   : true
+        })
+        .then(function(response){
+          // response=JSON.parse(resp);
+          // response is the response from the server.
+          console.log('RESPONSE Playlists!', response);
+
+          // playlist_id = response.artists.items[0].id;
+
+         }) // Close the .then Manage Artist 1 response function call
+         .catch(function(err){
+           console.log(err);
+           console.log('Playlist');
+         })
+  }
 }

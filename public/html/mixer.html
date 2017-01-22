@@ -1,20 +1,22 @@
-<body ng-controller="mixCtrl as mymix">
-<!-- <div class="container-fluid">
-    <h1>
-       {{mymix.greeting}}
-    </h1>
-</div> -->
-
-<div class="container-fluid">
-  <p> {{mymix.instructions1}}</p>
-  <p> {{mymix.instructions2}}</p>
-  <p> {{mymix.instructions3}}</p>
-  <p> {{mymix.instructions4}}</p>
-</div>
+<form ng-submit="mymix.saveMix(mymix.namePlaylist)" class="form-inline">
+  <br>
+  <h4> Name Your Mix: </h4>
+  <div class="form-group">
+        <input ng-model="mymix.namePlaylist" class="form-control" type="text" placeholder="My Jams Mix 1">
+  </div>
+  <br>
+  <h4>
+  <br>
+  <br>
+  <button class="btn btn-primary btn-lg">Save Mix</button>
+  <button class="btn btn-primary btn-lg">Play Mix</button> <!--//show/hide this button after saveMix -->
+  <br>
+  <br>
+</form>
 
   <div>
     <ul class="list-group">
-        <li class="list-group-item" ng-repeat="MixList in mymix.mix | orderBy:'MixList.artists[0].name'" ng-click="mymix.FinalMix(artists)">
+        <li class="list-group-item" ng-repeat="MixList in mymix.Auth.user.playlists" | orderBy:'artists[0].name' ng-submit="mymix.FinalMix(artists)">
             <p>
               {{MixList.artists[0].name}}
             </p>
@@ -22,10 +24,8 @@
                {{MixList.name}}
             </p>
             <p>
-               <iframe ng-src="{{ mymix.$sce.trustAsResourceUrl('https://embed.spotify.com/?uri=' + MixList.uri) }}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+               <iframe ng-src="{{ mymix.$sce.trustAsResourceUrl('https://embed.spotify.com/?uri=' + MixList.uri + '&theme=white&view=coverart') }}" width="300" height="80" frameborder="0" allowtransparency="false"></iframe>
             </p>
         </li>
      </ul>
   </div>
-
-</body>

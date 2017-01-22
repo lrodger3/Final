@@ -21,10 +21,6 @@ function mixCtrller (Auth,MixCenter,$location,$sce){// Open the main controller 
         // User is logged in, set them in the service and fetch plylist data
 
         Auth.user = returnData.data // store in Auth service so we can access it anywhere we inject Auth
-        // Auth.user.playlist.get()
-        //   .then(function(returnData){
-        //     // mix.****** = returnData.data
-        // })
       }
 
     })
@@ -54,8 +50,24 @@ function mixCtrller (Auth,MixCenter,$location,$sce){// Open the main controller 
                      TheMix.nSongs
         )
     .then(function(resp){
-      console.log('Mixes : ', resp.data)
-      TheMix.playlists = resp.data;
+      console.log('Playlists : ', resp.data)
+      TheMix.mixDetails = resp.data.mixDetails;
+      TheMix.playlists = resp.data.tracks;
+
+      $location.url('/mixer'); // take them to angular mixer route
+
+
     });
 }
+    TheMix.saveMix = function(){
+    MixCenter.saveMix(TheMix.namePlaylist,TheMix.Auth.user.playlists)
+             .then(function(respPL){
+                  console.log('Playlists : ', respPL.data)
+                  // TheMix.mixDetails = respPL.data.mixDetails;
+                  TheMix.finalresult = respPL.data;
+
+                  // $location.url('www.spotify.com/'); // take them to spotify playlist 'play' page mixer route
+
+      });
+   }
 }  //Closes the main controller call

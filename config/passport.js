@@ -33,6 +33,7 @@ passport.use(
                 email       : profile.emails[0].value,
                 spotifyid   : profile.id,
                 token       : accessToken,
+                mixDetails  : {},
                 playlists   : []
               })
               newuser.save((err, doc)=>{

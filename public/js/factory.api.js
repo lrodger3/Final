@@ -22,7 +22,7 @@ function mixFactory ($http){ //Open factory function
                       nSongs){
     return $http({
        method : "POST",
-       url    : "/myServer/toSpotify",
+       url    : "/myServer/toSpotify/mix",
        data   : {
 
          artist1 : artist1,
@@ -44,7 +44,20 @@ function mixFactory ($http){ //Open factory function
        }
     })
   }
-    return {
-      FinalMix : FinalMix
-    }
+
+  function saveMix (namePlaylist, playlists){
+   return $http({
+      method : "POST",
+      url    : "/myServer/toSpotify/playlist",
+      data   : {
+
+      namePlaylist : namePlaylist,
+      playlists    : playlists
+      }
+   })
+  }
+  return {
+     FinalMix: FinalMix,
+     saveMix : saveMix
+  }
 }

@@ -36,7 +36,6 @@
 
     <script src="/js/module.m34s.js"></script>
     <script src="/js/controller.mkmix.js"></script>
-    <script src="/js/controller.mkdash.js"></script>
     <script src="/js/factory.api.js"></script>
     <script src="/js/service.auth.js"></script>
 
@@ -49,41 +48,43 @@
 
 </head>
 
-<body ng-controller="TheMix as mygig" id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<body ng-controller="TheMix as mygig" data-target=".navbar-fixed-top">
 
     <!-- Navigation -->
     <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
-        <div class="container">
+        <div class="container-fluid">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+
+<!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> -->
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main-collapse">
                     Menu <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
+                <a class="navbar-brand" href="#">
                     <i class="fa fa-play-circle"></i> <span class="light">M34S</span>
                 </a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <div class="collapse navbar-collapse navbar-right" id="navbar-main-collapse">
                 <ul class="nav navbar-nav">
                     <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
-                        <a href="#page-top"></a>
+                        <a href="#"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" ng-href="#home">Home</a>
+                        <a class="dropdown-toggle" ng-href="#home">Home</a>
                     </li>
                     <li>
                         <li ng-if="mygig.Auth.user">
-                        <a class="page-scroll" ng-href="#makemix">Make Mix</a>
+                        <a class="dropdown-toggle" ng-href="#makemix">Make Mix</a>
                     </li>
                     <li>
                        <li ng-if="mygig.Auth.user">
-                        <a class="page-scroll" ng-href="#mixer">Edit Mix</a>
+                        <a class="dropdown-toggle" ng-href="#mixer">Edit Mix</a>
                     </li>
                     </li>
                        <li ng-if="mygig.Auth.user">
-                       <a class="page-scroll" ng-href="#/done">Done</a>
+                       <a class="dropdown-toggle" ng-href="http://www.spotify.com">Done</a>
                     </li>
                 </ul>
             </div>
@@ -95,9 +96,9 @@
     <!-- Intro Header -->
     <header class="intro">
         <div class="intro-body">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
+                    <div class="col-lg-8 col-lg-offset-2">
                         <h1 class="brand-heading">M34S</h1>
                         <p class="intro-text">Make My Mix for Spotify
                             <br>Customize Your Listening Experience.</p>
@@ -112,22 +113,22 @@
     </header>
 
     <!-- About Section -->
-    <section id="about" class="container content-section text-center">
+    <!-- <section id="about" class="container-fluid content-section text-center">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
-                <h2>About M34S</h2>
+                <h4>How to Use M34S</h4>
                 <p>Make My Mix for Spotify is an easy interface for Spotify</p>
                 <p>to customize and enhance your playlist listening experience.</p>
-                <hr>
-                <!-- <div> -->
+                <div></div>
+                <div>
                   <p> {{mygig.instructions1}}</p>
                   <p> {{mygig.instructions2}}</p>
                   <p> {{mygig.instructions3}}</p>
                   <p> {{mygig.instructions4}}</p>
-                <!-- </div> -->
+                </div>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Download Section -->
     <!-- <section id="download" class="content-section text-center">
@@ -170,8 +171,8 @@
 
     <!-- Footer -->
     <footer>
-        <div class="container text-center">
-            <p>Copyright &copy; M34S Make My Mix for Spotify                         2017 All Rights Reserved.</p>
+        <div class="container-fluid">
+            <p>Copyright &copy;2017    M34S Make My Mix for Spotify        All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -185,12 +186,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
     <!-- Google Maps API Key - Use your own API key to enable the map feature. More information on the Google Maps API can be found at https://developers.google.com/maps/ -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script>
+    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCRngKslUGJTlibkQ3FkfTxj3Xss1UlZDA&sensor=false"></script> -->
 
     <!-- Theme JavaScript -->
-    <script src="/js/grayscale.min.js"></script>
-
-    <!-- <ng-view></ng-view> -->
+    <script src="/js/grayscale.js"></script>
 
 </body>
 

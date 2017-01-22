@@ -9,6 +9,7 @@ var userSchema = mongoose.Schema({
                    type : Number,
                 default : () => {return Date.now()}
                 },
+  mixDetails  : {type : Object},              
   playlists   : {type : Array}
 })
 

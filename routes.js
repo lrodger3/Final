@@ -26,6 +26,6 @@ module.exports = (app) =>{
 
 // Routes to collect information from Spotify API
 
-  app.post('/myServer/toSpotify', API.FinalMix);
-
+  app.post('/myServer/toSpotify/mix', API.FinalMix);
+  app.post('/myServer/toSpotify/playlist', API.SavePL);
 }
