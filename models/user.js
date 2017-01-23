@@ -14,8 +14,15 @@ var userSchema = mongoose.Schema({
   mixDetails  : {type    : Object,
                  default : {}
                 },
-  songs       : {type    : Array,
-                 default : []}
+  PLDetails   : {type    : Object,
+                  default : {}
+                },
+  playlists   : {type    : Array,
+                 default : []
+               },
+  PLsongs      : {type    : Array,
+                  default : []
+               }
 })
 
 module.exports = mongoose.model("User", userSchema);

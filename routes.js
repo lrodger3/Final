@@ -33,5 +33,4 @@ module.exports = (app) =>{
 
   app.post('/myServer/toSpotify/mix', API.FinalMix);
   app.post('/myServer/toSpotify/createPL', API.CreatePL);
-  app.post('/myServer/toSpotify/addToPL', API.AddToPL);
 }

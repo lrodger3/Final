@@ -1,4 +1,5 @@
 var request = require('request-promise'),
+    _ = require('underscore'),
     async = require('async');
 // Since all of the endpoints in the Spotify API use this url as a base, we store it in a variable
 var baseURI = "https://api.spotify.com";
@@ -391,11 +392,19 @@ async.parallel(bld_seeds,function(err,SeedArray){
       // response=JSON.parse(resp);
       // console.log('RESPONSE Recommendations!', response);  // response is the response from the server.
 
+      req.user.playlists = response.tracks;
+
+      req.user.PLsongs = _.pluck(req.user.playlists,'uri');
+      // console.log('Check List: ', req.user.PLsongs.length);
 
       req.user.mixDetails= response;
-      req.user.songs = response.tracks; // Attach it to the user for storage in the local database
+      // req.user.songs = response.tracks.uri; // Attach it to the user for storage in the local database
+
+      req.user.markModified('PLSongs');
       req.user.save();
       resMix.send(req.user.mixDetails);
+
+
 
      }) // Close the .then Recommendations response function call
      .catch(function(err){
@@ -415,80 +424,57 @@ async.parallel(bld_seeds,function(err,SeedArray){
             headers: { Authorization : `"Bearer ${req.user.token}"`,
                        'Content-Type': 'application/json'
                      },
-            some   : {
+            body   : {
                         name          : req.body.namePlaylist,
                         public        : false,
                         collaborative : false
                      },
             json   : true
         })
-        .then(function(response){
+        .then(function(respCL){
           // response=JSON.parse(resp);
           // response is the response from the server.
           // console.log('RESPONSE New Playlist Details:', response);
 
-          req.user.playlist_id = response.uri; // Attach it to the user for storage in the local database
-          req.user.save();
-          // playlist_id = [];
-          resCPL.send(response.uri);
+          req.user.playlist_id = respCL.id; // Attach it to the user for storage in the local database
 
+          // console.log(req.user.playlist_id);
 
+          // req.user.save();
+
+          // resCPL.send(respCL);
+
+          request({
+               method : 'POST',
+              //  POST https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}/tracks
+               url    : `${baseURI}/v1/users/${req.user.spotifyid}/playlists/${req.user.playlist_id}/tracks`,
+               headers: { Authorization : `"Bearer ${req.user.token}"`
+                        },
+               body   : {
+                           uris           : req.user.PLsongs
+                        },
+               json   : true
+           })
+           .then(function(respPL){
+                     // response=JSON.parse(resp);
+                     // response is the response from the server.
+                    //  console.log('RESPONSE Added to Playlist:', respPL);
+
+                     req.user.PLDetails = respPL;
+                    //  req.user.playlist_id = response.playlist_id; // Attach it to the user for storage in the local database
+                     req.user.save();
+
+                     resCPL.send(respPL);
+
+                    }) // Close the .then Manage Artist 1 response function call
+                    .catch(function(err){
+                      console.log(err);
+                      console.log('addPL');
+                    })
          }) // Close the .then Manage Artist 1 response function call
          .catch(function(err){
            console.log(err);
            console.log('newPL');
          })
-  },
-
- AddToPL : (req, resAPL) =>{
-  // We need to make a request to the Spotify API
-  //     Playlist Requests from Spotify
-        request({
-             method : 'POST',
-            //  POST https://api.spotify.com/v1/users/{user_id}/playlists/{playlist_id}/tracks
-             url    : `${baseURI}/v1/users/${req.user.spotifyid}/playlists/`,
-             headers: { Authorization : `"Bearer ${req.user.token}"`
-                      },
-             some   : {
-                         name           : req.body.namePlaylist,
-                         playlist_id    : req.body.playlist_id,
-                         tracks         : req.body.songs
-                      },
-             json   : true
-         })
-        .then(function(response){
-          // response=JSON.parse(resp);
-          // response is the response from the server.
-          console.log('RESPONSE Added to Playlist:', response);
-
-          req.user.mixDetails = response;
-          req.user.playlist_id = response.playlist_id; // Attach it to the user for storage in the local database
-          req.user.save();
-
-          resAPL.send(response.playlist_id);
-
-         }) // Close the .then Manage Artist 1 response function call
-         .catch(function(err){
-           console.log(err);
-           console.log('addPL');
-         })
   }
 }
-
-// addToPlaylist(songs, playlistUrl, positions = None):
-//     data = { 'uris': songs }
-//     if position != None:
-//         data.update({ 'position': position })
-//
-//     headers = authHeader.copy()
-//     headers.update({'Content-Type': 'application/json'})
-//     print(headers)
-//     print(json.dumps(data))
-//
-//     req = requests.post(playlistUrl, headers = headers, data = json.dumps(data))
-//     if req.status_code != 201:
-//         print('Error: Request returned status code {}. Returned: {}'.format(req.status_code, req.text))
-//
-// songs = ["spotify:track:1i1fxkWeaMmKEB4T7zqbzK", "spotify:track:2VKqMKKCFhTPczQb10TMKB", "spotify:track:7Gl9cKtVjRN6KHNMfV1gD3"]
-// url = "https://api.spotify.com/v1/users/username/playlists/2...Q/tracks"
-// addToPlaylist(songs, url, 0)
