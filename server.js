@@ -34,6 +34,6 @@ app.use(express.static(__dirname + '/public'),
 Router(app); // Pass the express app object as an argument
 
 // Listen for connections
-app.listen(process.env.PORT || 3000, ()=>{
-    console.log(`It's up on ${process.env.PORT || 3000}`);
+app.listen(process.env.PORT || 80, ()=>{
+    console.log(`It's up on ${process.env.PORT || 80}`);
 });
