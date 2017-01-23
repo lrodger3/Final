@@ -16,7 +16,12 @@ module.exports = (app) =>{
 
   app.get('/api/me', (req, res)=>{
       res.send(req.user);
-  })
+  });
+
+// CatchAll
+  app.get('*', (req, res)=>{
+   res.sendFile('index.html', {root : './public/html'});
+ });
 
 
   // Initial Test to make sure everything is working
@@ -27,5 +32,6 @@ module.exports = (app) =>{
 // Routes to collect information from Spotify API
 
   app.post('/myServer/toSpotify/mix', API.FinalMix);
-  app.post('/myServer/toSpotify/playlist', API.SavePL);
+  app.post('/myServer/toSpotify/createPL', API.CreatePL);
+  app.post('/myServer/toSpotify/addToPL', API.AddToPL);
 }

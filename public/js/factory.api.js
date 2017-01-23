@@ -45,10 +45,21 @@ function mixFactory ($http){ //Open factory function
     })
   }
 
-  function saveMix (namePlaylist, playlists){
+  function CreatePL (namePlaylist, playlists){
    return $http({
       method : "POST",
-      url    : "/myServer/toSpotify/playlist",
+      url    : "/myServer/toSpotify/createPL",
+      data   : {
+
+      namePlaylist : namePlaylist
+      // playlists    : playlists
+      }
+   })
+  }
+  function AddToPL (namePlaylist, playlists){
+   return $http({
+      method : "POST",
+      url    : "/myServer/toSpotify/addToPL",
       data   : {
 
       namePlaylist : namePlaylist,
@@ -57,7 +68,8 @@ function mixFactory ($http){ //Open factory function
    })
   }
   return {
-     FinalMix: FinalMix,
-     saveMix : saveMix
+     FinalMix   : FinalMix,
+     CreatePL   : CreatePL,
+     AddToPL    : AddToPL
   }
 }

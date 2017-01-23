@@ -50,7 +50,7 @@ function mixCtrller (Auth,MixCenter,$location,$sce){// Open the main controller 
                      TheMix.nSongs
         )
     .then(function(resp){
-      console.log('Playlists : ', resp.data)
+      console.log('Mix Results : ', resp.data)
       TheMix.mixDetails = resp.data.mixDetails;
       TheMix.playlists = resp.data.tracks;
 
@@ -60,14 +60,25 @@ function mixCtrller (Auth,MixCenter,$location,$sce){// Open the main controller 
     });
 }
     TheMix.saveMix = function(){
-    MixCenter.saveMix(TheMix.namePlaylist,TheMix.Auth.user.playlists)
-             .then(function(respPL){
-                  console.log('Playlists : ', respPL.data)
+    MixCenter.CreatePL(TheMix.namePlaylist,TheMix.Auth.user.playlists)
+             .then(function(respSave){
+                  console.log('New Playlist : ', respSave.data)
                   // TheMix.mixDetails = respPL.data.mixDetails;
-                  TheMix.finalresult = respPL.data;
+                  TheMix.savePLresult = respSave.data;
 
                   // $location.url('www.spotify.com/'); // take them to spotify playlist 'play' page mixer route
 
-      });
+              });
+   }
+   TheMix.addTracks = function(){
+   MixCenter.AddToPL(TheMix.namePlaylist,TheMix.Auth.user.playlists)
+            .then(function(respAdd){
+                 console.log('Add to Playlist : ', respAdd.data)
+                 // TheMix.mixDetails = respPL.data.mixDetails;
+                 TheMix.addToPLresult = respAdd.data;
+
+                 // $location.url('www.spotify.com/'); // take them to spotify playlist 'play' page mixer route
+
+             });
    }
 }  //Closes the main controller call

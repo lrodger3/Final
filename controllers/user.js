@@ -30,22 +30,5 @@ module.exports = {
       res.send(doc)
     });
 
-  },
-
-  login : (req, res) => {
-    // Remember that login has many "bad" paths and one "happy" path
-
-    // First, FIND the user
-    User.findOne({email : req.body.email.toLowerCase()}, (err, user)=>{
-
-      if(err) {
-        return res.send(err) // BAD PATH
-      }
-          // GOOD PATH! - user exists, no errs
-
-          req.session.userID = user._id // Set our auth session
-          res.send(user);
-
-    })
   }
 }

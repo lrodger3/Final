@@ -14,6 +14,7 @@ function collapseNavbar() {
 }
 
 $(window).scroll(collapseNavbar);
+$(window).click(collapseNavbar); //I added this one
 $(document).ready(collapseNavbar);
 
 // jQuery for page scrolling feature - requires jQuery Easing plugin
