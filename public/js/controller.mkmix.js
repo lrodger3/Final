@@ -26,7 +26,7 @@ function mixCtrller (Auth,MixCenter,$location,$sce){// Open the main controller 
     })
 
   TheMix.greeting = "Make My Mix for Spotify";
-  TheMix.instructions1="Use a total of five options to make your mix playlist:";
+  TheMix.instructions1="Use up to a total of five options to make your mix playlist:";
   TheMix.instructions2="Example 1: Artist, Song, Genre, Genre, Genre";
   TheMix.instructions3="Example 2: Artist, Artist, Song, Song, Genre";
   TheMix.instructions4="Example 3: Artist, Artist, Song, Genre, Genre";
